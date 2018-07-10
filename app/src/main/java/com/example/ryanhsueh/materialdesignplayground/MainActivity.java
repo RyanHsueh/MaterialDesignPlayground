@@ -9,15 +9,35 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawer;
+
+    private Fruit[] FRUITS = new Fruit[]{
+            new Fruit("banana", R.drawable.banana),
+            new Fruit("tomato", R.drawable.tomato),
+            new Fruit("mango", R.drawable.mango),
+            new Fruit("muskmelon", R.drawable.muskmelon),
+            new Fruit("strawberry", R.drawable.strawberry),
+            new Fruit("grapes", R.drawable.grapes),
+            new Fruit("avocado", R.drawable.avocado),
+    };
+
+    private List<Fruit> mFruitList = new ArrayList<>();
+
+    private FruitAdapter mFruitAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
         });
+
+
+        initFruits();
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(layoutManager);
+        mFruitAdapter = new FruitAdapter(mFruitList);
+        recyclerView.setAdapter(mFruitAdapter);
     }
 
     @Override
@@ -84,5 +112,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    private void initFruits() {
+        mFruitList.clear();
+        for (int i=0; i<50 ; i++) {
+            Random random = new Random();
+            int index = random.nextInt(FRUITS.length);
+            mFruitList.add(FRUITS[index]);
+        }
     }
 }
