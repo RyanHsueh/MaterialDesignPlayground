@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Fruit> mFruitList = new ArrayList<>();
 
     private FruitAdapter mFruitAdapter;
+
+    private SwipeRefreshLayout mSwipeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         mFruitAdapter = new FruitAdapter(mFruitList);
         recyclerView.setAdapter(mFruitAdapter);
+
+
+        mSwipeLayout = findViewById(R.id.swipe_layout);
+        mSwipeLayout.setColorSchemeResources(R.color.colorAccent);
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshFruits();
+            }
+        });
     }
 
     @Override
@@ -121,5 +134,27 @@ public class MainActivity extends AppCompatActivity {
             int index = random.nextInt(FRUITS.length);
             mFruitList.add(FRUITS[index]);
         }
+    }
+
+    private void refreshFruits() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initFruits();
+                        mFruitAdapter.notifyDataSetChanged();
+                        mSwipeLayout.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
     }
 }
