@@ -11,3 +11,4 @@ What I played?
 7. CardView
 8. AppBarlayout
 9. SwipeRefreshLayout
+10. CollapsingToolbarLayout
