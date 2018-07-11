@@ -1,5 +1,6 @@
 package com.example.ryanhsueh.materialdesignplayground;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
