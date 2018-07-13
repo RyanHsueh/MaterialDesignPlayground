@@ -13,9 +13,9 @@
         android:title="Camera"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menu_edit"
+        android:id="@+id/menu_tab_layout"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="Edit"
+        android:title="Tab Layout Demo"
         app:showAsAction="never"/>
 
 </menu>

@@ -121,8 +121,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_camera:
                 Toast.makeText(this, "Menu Camera", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.menu_edit:
-                Toast.makeText(this, "Menu Edit", Toast.LENGTH_SHORT).show();
+            case R.id.menu_tab_layout:
+                Intent intent = new Intent(this, TabLayoutActivity.class);
+                startActivity(intent);
                 break;
         }
         return true;
