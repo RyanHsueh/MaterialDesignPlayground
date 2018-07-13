@@ -79,4 +79,24 @@
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"/>
 
+
+    <!-- Footer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="12dp"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_behavior="com.example.ryanhsueh.materialdesignplayground.behavior.FooterBehaviorAppBar">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:text="This is a footer"/>
+
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
