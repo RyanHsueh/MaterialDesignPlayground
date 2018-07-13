@@ -17,4 +17,15 @@
             android:title="HRV"/>
     </group>
 
+    <item android:title="Others">
+        <menu>
+            <item
+                android:icon="@drawable/icon_drawer_settings_off"
+                android:title="Settings" />
+            <item
+                android:icon="@drawable/icon_drawer_partners_off"
+                android:title="Partners" />
+         </menu>
+    </item>
+
 </menu>
